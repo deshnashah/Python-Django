@@ -1,0 +1,14 @@
+{% extends "blog/base.html" %}
+{% block content %}
+	{% for product in products%}
+		<article class="media content-section">
+		  <div class="media-body">
+			<div class="article-metadata">
+			  <a class="mr-2" href="#">{{ product.product_name }}</a>
+			  <small class="text-muted">{{ product.date_posted|date:"F d, Y" }}</small>
+			</div>			
+			<p class="article-content">{{ product.price }}</p>
+		  </div>
+		</article>		
+	{% endfor %}
+{% endblock content %}
