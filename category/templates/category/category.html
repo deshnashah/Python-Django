@@ -1,11 +1,17 @@
 {% extends "blog/base.html" %}
 {% block content %}
+	<a class="btn btn-primary float-right" href="{% url 'category-add' %}" style="color:#FFFFFF">Add Category</a>
+	<div class="clearfix mb-2"></div>	
 	{% for category in categories%}
 		<article class="media content-section">
 		  <div class="media-body">
 			<div class="article-metadata">
 			  <a class="mr-2" href="#">{{ category.name }}</a>
-			  <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
+			  <small class="text-muted">{{ category.date_posted|date:"F d, Y" }}</small>
+			  <span class="mr-4 float-right">
+				<a class="mr-2" href="{% url 'category-update' category.id %}">Edit</a>
+				<a class="mr-2" href="{% url 'category-delete' category.id %}">Delete</a>
+			  </span>
 			</div>			
 			<p class="article-content">{{ category.description }}</p>
 		  </div>

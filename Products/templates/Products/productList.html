@@ -1,14 +1,32 @@
 {% extends "blog/base.html" %}
 {% block content %}
-	{% for product in products%}
-		<article class="media content-section">
-		  <div class="media-body">
-			<div class="article-metadata">
-			  <a class="mr-2" href="#">{{ product.product_name }}</a>
-			  <small class="text-muted">{{ product.date_posted|date:"F d, Y" }}</small>
-			</div>			
-			<p class="article-content">{{ product.price }}</p>
-		  </div>
-		</article>		
-	{% endfor %}
+	<a class="btn btn-primary float-right" href="{% url 'product-add' %}" style="color:#FFFFFF">Add Product</a>
+	<div class="clearfix mb-2"></div>	
+	<table class="table">
+		<thead class="thead-dark">
+			<tr>
+				<th scope="col">Actions</th>
+				<th scope="col">Name</th>
+				<th scope="col">Category</th>
+				<th scope="col">Price</th>
+				<th scope="col">Status</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for product in products%}
+			<tr>
+				<td>
+					<span class="mr-4 float-right">
+						<a class="ml-2" href="{% url 'product-update' product.id %}">Edit</a>
+						<a class="ml-2" href="{% url 'product-delete' product.id %}">Delete</a>
+					</span>
+				</td>
+				<td>{{ product.product_name }}</td>
+				<td>{{ product.category.name }}</td>
+				<td>{{ product.price }}</td>
+				<td>{{ product.status }}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
 {% endblock content %}

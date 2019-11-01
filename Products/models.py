@@ -10,7 +10,7 @@ class Products(models.Model):
     )
     
 	product_name = models.CharField(max_length=200)
-	category_id = models.ForeignKey(Category, on_delete=models.CASCADE)
+	category = models.ForeignKey(Category, on_delete=models.CASCADE)
 	price = models.IntegerField()
 	status = models.CharField(
         max_length=1,
